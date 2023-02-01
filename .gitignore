@@ -1,0 +1,27 @@
+# OS
+*.bak
+*.swp
+*~
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+._*
+Thumbs.db
+
+# Git
+*.orig
+.nocheckin
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+
+# Ansible
+*.retry
+.cache
+
+# Python
+*.pyc
+__pycache__
