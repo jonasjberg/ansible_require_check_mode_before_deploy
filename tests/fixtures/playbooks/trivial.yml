@@ -1,0 +1,22 @@
+---
+
+- name: Display debug message, explicitly targeting localhost
+  hosts: localhost
+  become: no
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Try/catch ..
+      block:
+        - name: Require check-mode
+          ran_in_check_mode:
+            playbook: tests/fixtures/playbooks/trivial.yml
+          register: __ran_in_check_mode_result
+      always:
+        - name: Always show module results
+          debug:
+            var: __ran_in_check_mode_result
+
+    - name: Display arbitrary message
+      debug:
+        msg: meow meow

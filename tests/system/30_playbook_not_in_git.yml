@@ -1,0 +1,32 @@
+- name: Playbook assumed not to be part of any Git repository
+  hosts: localhost
+  become: no
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Display start-of-test message
+      debug:
+        msg: Starting ..
+
+    - name: Expecting this to fail on Git operations
+      block:
+        - name: Require check-mode
+          ran_in_check_mode:
+            playbook: foo.yml
+          register: __result
+      always:
+        - name: debug
+          debug:
+            var: __result
+      rescue:
+        - name: Verify error message
+          assert:
+            that:
+              - __result is failed
+              - __result.msg is defined
+              - "'Unable to retrieve Git revision' in __result.msg"
+
+    - name: Display end-of-test message
+      debug:
+        msg: Finished
+

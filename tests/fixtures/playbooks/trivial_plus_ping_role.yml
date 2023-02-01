@@ -1,0 +1,20 @@
+---
+
+- name: Ping role and then debug message task against localhost
+  hosts: localhost
+  become: no
+  connection: local
+  gather_facts: no
+
+  pre_tasks:
+    - name: Require check-mode
+      ran_in_check_mode:
+        playbook: tests/fixtures/playbooks/trivial_plus_ping_role.yml
+
+  roles:
+    - role: ping
+
+  post_tasks:
+    - name: Display arbitrary message
+      debug:
+        msg: meow meow
