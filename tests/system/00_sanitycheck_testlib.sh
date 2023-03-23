@@ -8,14 +8,14 @@ source "${_SELF_DIRPATH}/lib.sh"
 testlib::mark_testcase_begin
 
 
-testlib::assert_exits_successfully '' echo sanity checking ..
-testlib::assert_exits_with_status '' 1 echo sanity checking ..
+testlib::assert_exits_successfully 'simple command exits successfully' echo sanity checking ..
+testlib::assert_exits_successfully '' echo meoooww
 
-testlib::assert_exits_successfully 'simple command should exit successfully' \
-    echo sanity checking ..
+testlib::assert_exits_with_status 'non-zero exitcode result fails' 1 false
 
-testlib::assert_exits_with_status 'simple command returning non-zero should fail' 1 \
-    false
+testlib::assert_exits_successfully 'We have Ansible ..' 'command -v ansible'
+testlib::assert_exits_successfully 'We have Git ..' 'command -v git'
+testlib::assert_exits_successfully 'We have Python ..' 'command -v python3'
 
 testlib::assert_exits_successfully 'ansible-playbook --version exits successfully' \
     ansible-playbook --version

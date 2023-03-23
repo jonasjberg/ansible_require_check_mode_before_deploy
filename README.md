@@ -7,14 +7,35 @@ might revisit and clean up; but ... prematurely publicizing just so that I can
 easily share it to a couple of folks..
 
 
-Authors
--------
-Initial implementation by Jonas Sjöberg <jonas@jonasjberg.com>.
+## Example Usage
+Example playbook `playbooks/foobar_servers.yml`:
+```yaml
+- name: Example playbook that verifies that each unique Git revision of the
+        project runs in check-mode ("--check") at least once before actually
+        deploying state to targeted hosts
+  hosts: foobar_servers
+  tasks:
+    - name: Require check-mode prior to deploy
+      ran_in_check_mode: example.yml
+        playbook: playbooks/foobar_servers.yml
+```
 
+It does not matter how or when the module runs but it likely makes most sense
+to run it first in the playbook, alongside any other pre-flight sanity-checks.
+The module runs locally regardless of the play hosts selection.
+
+
+## Running Tests
+Run all tests:
+```
+./tests/run_all_tests.sh
+```
+
+
+## Authors
 * Jonas Sjöberg <jonas@jonasjberg.com>
 
 
-Licensing
----------
+## Licensing
 *Do What The Fuck You Want To Public License*, Version 2.
 Refer to `LICENSE_WTFPL.txt` and <http://www.wtfpl.net/>.
