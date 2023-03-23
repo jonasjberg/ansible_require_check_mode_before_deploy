@@ -16,7 +16,7 @@ Example playbook `playbooks/foobar_servers.yml`:
   hosts: foobar_servers
   tasks:
     - name: Require check-mode prior to deploy
-      ran_in_check_mode: example.yml
+      require_check_mode_before_deploy:
         playbook: playbooks/foobar_servers.yml
 ```
 

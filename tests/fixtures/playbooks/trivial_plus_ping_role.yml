@@ -8,7 +8,7 @@
 
   pre_tasks:
     - name: Require check-mode
-      ran_in_check_mode:
+      require_check_mode_before_deploy:
         playbook: tests/fixtures/playbooks/trivial_plus_ping_role.yml
 
   roles:

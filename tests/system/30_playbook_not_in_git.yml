@@ -11,7 +11,7 @@
     - name: Expecting this to fail on Git operations
       block:
         - name: Require check-mode
-          ran_in_check_mode:
+          require_check_mode_before_deploy:
             playbook: foo.yml
           register: __result
       always:

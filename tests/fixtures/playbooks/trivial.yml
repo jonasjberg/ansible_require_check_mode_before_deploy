@@ -9,13 +9,13 @@
     - name: Try/catch ..
       block:
         - name: Require check-mode
-          ran_in_check_mode:
+          require_check_mode_before_deploy:
             playbook: tests/fixtures/playbooks/trivial.yml
-          register: __ran_in_check_mode_result
+          register: __require_check_mode_before_deploy_result
       always:
         - name: Always show module results
           debug:
-            var: __ran_in_check_mode_result
+            var: __require_check_mode_before_deploy_result
 
     - name: Display arbitrary message
       debug:
