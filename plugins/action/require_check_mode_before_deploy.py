@@ -3,7 +3,6 @@
 
 import json
 import os
-import pprint
 import re
 import subprocess
 
@@ -11,7 +10,7 @@ from ansible.module_utils.six import string_types
 from ansible.plugins.action import ActionBase
 
 
-_DEFAULT_RUN_HISTORY_FILEPATH = '~/.ansible_check_mode_history.json'
+_DEFAULT_CHECK_RUN_HISTORY_FILEPATH = '~/.ansible_check_mode_history.json'
 
 
 def get_current_git_revision():
@@ -55,7 +54,7 @@ class ActionModule(ActionBase):
 
         run_history_data = {}
         run_history_filepath = os.path.normpath(os.path.expanduser(
-            os.getenv('ANSIBLE_CHECK_HISTORY_FILE', _DEFAULT_RUN_HISTORY_FILEPATH)
+            os.getenv('ANSIBLE_CHECK_MODE_RUNS_HISTORY_FILE', _DEFAULT_CHECK_RUN_HISTORY_FILEPATH)
         ))
         if os.path.isfile(run_history_filepath):
             with open(run_history_filepath, 'r', encoding='utf8') as filehandle:

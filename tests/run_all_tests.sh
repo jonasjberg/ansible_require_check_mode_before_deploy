@@ -29,7 +29,7 @@ do
     # BSD/MacOS find does not support the '-executable' option..
     [ -x "$filepath" ] || continue
 
-    declare -p filepath
+    # Run presumed "test suite" script.
     "$filepath" || exitstatus=13
 done
 
